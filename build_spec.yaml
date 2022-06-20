@@ -4,17 +4,16 @@ timeoutInSeconds: 6000
 shell: bash
 env:
   exportedVariables:
-    - BuildVersion
     - BUILDRUN_HASH
 steps:
   - type: Command
-    name: "Define a version for artifact"
+    name: "Define a version for the artifact"
     timeoutInSeconds: 40
     command: |
       export BUILDRUN_HASH=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
       echo "BUILDRUN_HASH: " $BUILDRUN_HASH
   - type: Command
-    name: "Node Check"
+    name: "NodeJS"
     timeoutInSeconds: 4000
     command: |
       echo "Current version"
@@ -28,17 +27,6 @@ steps:
       nvm alias default 16.15.1
       echo "Version to v16"
       node --version
-  - type: Command
-    name: "Where Am I"
-    timeoutInSeconds: 4000
-    command: |
-      pwd
-  - type: Command
-    name: "What is in here"
-    timeoutInSeconds: 4000
-    command: |
-      echo "Conteúdo da pasta /workspace/storefront"
-      ls -ltr
   - type: Command
     name: "Installing depedencies"
     timeoutInSeconds: 4000
@@ -61,8 +49,6 @@ steps:
     name: "Dockerize"
     timeoutInSeconds: 4000
     command: |
-      BuildVersion=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
-      echo $BuildVersion
       docker build -t mushop-demo:latest .
  
 outputArtifacts:
