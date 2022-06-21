@@ -1,7 +1,7 @@
 # MuShop Storefront
 
 Responsive eCommerce storefront single page application built on microservices
-architecture. Este é o MuShop (v3) :)
+architecture. Este é o MuShop (v4) :)
 
 - Built using [UIkit](https://getuikit.com)
 - Original templates by [Roman Chekurov](https://github.com/chekromul/uikit-ecommerce-template)
